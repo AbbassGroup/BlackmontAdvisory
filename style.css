@@ -1204,4 +1204,64 @@ footer {
   .field-row {
     grid-template-columns: 1fr;
   }
+
+  .legal-page {
+    padding: 7rem 1.5rem 5rem !important;
+  }
+
+  .legal-title {
+    font-size: 2rem !important;
+    margin-bottom: 0rem !important;
+  }
+
+  .legal-content h3 {
+    font-size: 1.5rem !important;
+    margin-top: 1rem !important;
+  }
 }
+
+/* ─── LEGAL PAGES ─── */
+.legal-page {
+  padding: 7rem 4rem 8rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  min-height: 70vh;
+}
+
+.legal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  color: var(--gilt);
+  margin-bottom: 3rem;
+}
+
+.legal-content {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.legal-content h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--parchment);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+.legal-content ul {
+  /* list-style-type: none; */
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.legal-content li {
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+/* .legal-content li::before {
+  content: '•';
+  position: absolute;
+  left: -1.25rem;
+  color: var(--gilt);
+} */
