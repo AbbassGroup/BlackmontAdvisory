@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,1081 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap"
     rel="stylesheet">
-  <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --midnight: #0a1018;
-      --navy: #111d2e;
-      --navy-mid: #172440;
-      --gilt: #c9a84c;
-      --gilt-light: #e2c97e;
-      --parchment: #f0ebe0;
-      --linen: #e8e3d8;
-      --muted: #c2bdb2;
-      --rule: rgba(201, 168, 76, 0.3);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--midnight);
-      color: var(--parchment);
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.25rem 4rem;
-      border-bottom: 0.5px solid rgba(201, 168, 76, 0.15);
-      background: rgba(10, 16, 24, 0.92);
-      backdrop-filter: blur(12px);
-      transition: padding 0.3s;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      text-decoration: none;
-    }
-
-    .nav-mono {
-      width: 38px;
-      height: 38px;
-      border: 1px solid var(--gilt);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .nav-mono span {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--gilt);
-      letter-spacing: 0.04em;
-    }
-
-    .nav-wordmark {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
-      font-weight: 500;
-      color: var(--parchment);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 400;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--gilt);
-    }
-
-    .nav-cta {
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gilt);
-      border: 0.5px solid var(--gilt);
-      padding: 0.55rem 1.25rem;
-      text-decoration: none;
-      font-weight: 400;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .nav-cta:hover {
-      background: var(--gilt);
-      color: var(--midnight);
-    }
-
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8rem 4rem 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 80% 40%, rgba(23, 36, 64, 0.7) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201, 168, 76, 0.05) 0%, transparent 60%),
-        linear-gradient(160deg, #0a1018 0%, #111d2e 50%, #0d1520 100%);
-    }
-
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      opacity: 0.04;
-      background-image:
-        linear-gradient(var(--gilt) 0.5px, transparent 0.5px),
-        linear-gradient(90deg, var(--gilt) 0.5px, transparent 0.5px);
-      background-size: 80px 80px;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 820px;
-    }
-
-    .hero-eyebrow {
-      font-size: 10px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gilt);
-      margin-bottom: 1.75rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 0.5px;
-      background: var(--gilt);
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 6vw, 5.8rem);
-      font-weight: 500;
-      line-height: 1.05;
-      color: var(--parchment);
-      letter-spacing: -0.01em;
-      margin-bottom: 1.75rem;
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--gilt-light);
-    }
-
-    .hero-body {
-      font-size: 1.2rem;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.8;
-      margin-bottom: 3rem;
-      font-weight: 400;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .btn-primary {
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      background: var(--gilt);
-      color: var(--midnight);
-      padding: 1rem 2.2rem;
-      text-decoration: none;
-      font-weight: 500;
-      display: inline-block;
-      transition: background 0.2s;
-    }
-
-    .btn-primary:hover {
-      background: var(--gilt-light);
-    }
-
-    .btn-ghost {
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      transition: color 0.2s;
-    }
-
-    .btn-ghost:hover {
-      color: var(--parchment);
-    }
-
-    .btn-ghost::after {
-      content: '→';
-      font-size: 14px;
-    }
-
-    .hero-stats {
-      position: absolute;
-      right: 4rem;
-      bottom: 4rem;
-      display: flex;
-      gap: 3rem;
-      z-index: 1;
-    }
-
-    .stat {
-      text-align: right;
-    }
-
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 500;
-      color: var(--parchment);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    /* ─── SHARED SECTION ─── */
-    section {
-      padding: 7rem 4rem;
-    }
-
-    .section-rule {
-      width: 40px;
-      height: 0.5px;
-      background: var(--gilt);
-      margin-bottom: 1rem;
-    }
-
-    .section-eyebrow {
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gilt);
-      margin-bottom: 2.5rem;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
-      font-weight: 500;
-      line-height: 1.1;
-      color: var(--parchment);
-      margin-bottom: 1.5rem;
-    }
-
-    .section-body {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.85;
-    }
-
-    /* ─── ABOUT ─── */
-    #about {
-      background: var(--navy);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    .about-pillars {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .pillar {
-      padding-left: 1.5rem;
-      border-left: 0.5px solid var(--rule);
-    }
-
-    .pillar-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: var(--parchment);
-      margin-bottom: 0.35rem;
-    }
-
-    .pillar-body {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .about-right {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .about-card {
-      background: var(--midnight);
-      border: 0.5px solid rgba(201, 168, 76, 0.15);
-      padding: 1.75rem 2rem;
-    }
-
-    .about-card-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
-      font-weight: 400;
-      color: var(--gilt);
-      line-height: 1;
-      margin-bottom: 0.75rem;
-    }
-
-    .about-card-title {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gilt);
-      margin-bottom: 0.5rem;
-    }
-
-    .about-card-body {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* ─── SELLERS / PROCESS ─── */
-    #how-we-work {
-      background: var(--midnight);
-    }
-
-    .sellers-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .process-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-top: 1rem;
-    }
-
-    .step {
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-      padding: 1.5rem 0;
-      border-bottom: 0.5px solid rgba(201, 168, 76, 0.1);
-      position: relative;
-    }
-
-    .step:first-child {
-      padding-top: 0;
-    }
-
-    .step-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--gilt);
-      flex-shrink: 0;
-      min-width: 28px;
-      line-height: 1;
-      margin-top: 2px;
-    }
-
-    .step-content {}
-
-    .step-title {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--parchment);
-      margin-bottom: 0.25rem;
-      letter-spacing: 0.02em;
-    }
-
-    .step-body {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .sellers-right {
-      padding-top: 0.5rem;
-    }
-
-    .capability-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .capability {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1.25rem 1.5rem;
-      background: rgba(17, 29, 46, 0.6);
-      border: 0.5px solid rgba(201, 168, 76, 0.12);
-      transition: border-color 0.2s;
-    }
-
-    .capability:hover {
-      border-color: rgba(201, 168, 76, 0.4);
-    }
-
-    .cap-icon {
-      width: 32px;
-      height: 32px;
-      flex-shrink: 0;
-      border: 0.5px solid var(--rule);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
-    }
-
-    .cap-icon svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--gilt);
-      fill: none;
-      stroke-width: 1.5;
-    }
-
-    .cap-title {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--parchment);
-      margin-bottom: 0.2rem;
-    }
-
-    .cap-body {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* ─── NETWORK ─── */
-    #network {
-      background: var(--navy-mid);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .network-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 50% 80% at 90% 50%, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
-    }
-
-    .network-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .network-header {
-      max-width: 640px;
-      margin-bottom: 4rem;
-    }
-
-    .network-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-    }
-
-    .network-card {
-      background: var(--midnight);
-      padding: 2.5rem 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-    }
-
-    .network-card:hover {
-      background: #0e1925;
-    }
-
-    .network-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gilt), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .network-card:hover::before {
-      opacity: 1;
-    }
-
-    .network-card-icon {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem;
-      font-weight: 400;
-      color: var(--gilt);
-      line-height: 1;
-      margin-bottom: 1.25rem;
-    }
-
-    .network-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
-      font-weight: 500;
-      color: var(--parchment);
-      margin-bottom: 0.75rem;
-    }
-
-    .network-card-body {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .network-geography {
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 0.5px solid rgba(201, 168, 76, 0.15);
-      display: flex;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .geo-label {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gilt);
-      margin-bottom: 0.5rem;
-    }
-
-    .geo-markets {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-top: 0.75rem;
-    }
-
-    .geo-tag {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--parchment);
-      border: 0.5px solid rgba(201, 168, 76, 0.3);
-      padding: 0.4rem 1rem;
-      font-weight: 400;
-    }
-
-    .geo-body {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.75;
-    }
-
-    /* ─── BUYERS ─── */
-    #buyers {
-      background: var(--midnight);
-    }
-
-    .buyers-layout {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .mandate-form {
-      background: var(--navy);
-      border: 0.5px solid rgba(201, 168, 76, 0.2);
-      padding: 2.5rem;
-    }
-
-    .mandate-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: var(--parchment);
-      margin-bottom: 0.5rem;
-    }
-
-    .mandate-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      margin-bottom: 2rem;
-      line-height: 1.75;
-    }
-
-    .mandate-fields {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .field-label {
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gilt);
-    }
-
-    .field-input {
-      background: var(--midnight);
-      border: 0.5px solid rgba(201, 168, 76, 0.2);
-      color: var(--parchment);
-      padding: 0.75rem 1rem;
-      font-family: 'Jost', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 300;
-      outline: none;
-      width: 100%;
-      transition: border-color 0.2s;
-    }
-
-    .field-input:focus {
-      border-color: var(--gilt);
-    }
-
-    .field-input::placeholder {
-      color: rgba(194, 189, 178, 0.55);
-    }
-
-    .field-select {
-      background: var(--midnight);
-      border: 0.5px solid rgba(201, 168, 76, 0.2);
-      color: var(--parchment);
-      padding: 0.75rem 1rem;
-      font-family: 'Jost', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 300;
-      outline: none;
-      width: 100%;
-      appearance: none;
-      transition: border-color 0.2s;
-    }
-
-    .field-select:focus {
-      border-color: var(--gilt);
-    }
-
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-    }
-
-    .mandate-submit {
-      margin-top: 1.5rem;
-      width: 100%;
-      background: var(--gilt);
-      color: var(--midnight);
-      border: none;
-      padding: 1rem;
-      font-family: 'Jost', sans-serif;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .mandate-submit:hover {
-      background: var(--gilt-light);
-    }
-
-    .buyers-right {
-      padding-top: 1rem;
-    }
-
-    .buyers-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .buyer-item {
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      padding-bottom: 1.5rem;
-      border-bottom: 0.5px solid rgba(201, 168, 76, 0.1);
-    }
-
-    .buyer-item:last-child {
-      border-bottom: none;
-    }
-
-    .buyer-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gilt);
-      flex-shrink: 0;
-      margin-top: 8px;
-    }
-
-    .buyer-item-title {
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--parchment);
-      margin-bottom: 0.25rem;
-    }
-
-    .buyer-item-body {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* ─── STRUCTURES / DEAL CARDS ─── */
-    #structures {
-      background: var(--navy);
-    }
-
-    .structures-header {
-      max-width: 640px;
-      margin-bottom: 4rem;
-    }
-
-    .deal-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .deal-card {
-      border: 0.5px solid rgba(201, 168, 76, 0.15);
-      padding: 2rem 1.75rem;
-      background: var(--midnight);
-      position: relative;
-    }
-
-    .deal-card-badge {
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gilt);
-      margin-bottom: 1.25rem;
-      display: block;
-    }
-
-    .deal-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: var(--parchment);
-      margin-bottom: 1rem;
-    }
-
-    .deal-card-body {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-top: 1rem;
-    }
-
-    .deal-note {
-      font-size: 1rem;
-      color: rgba(194, 189, 178, 0.75);
-      margin-top: 1rem;
-      line-height: 1.6;
-      font-style: italic;
-    }
-
-    /* ─── TWO-COL GRID ─── */
-    .two-col-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5px;
-      margin-bottom: 3rem;
-    }
-
-    /* ─── CTA ─── */
-    #contact {
-      background: var(--midnight);
-      text-align: center;
-      padding: 8rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(23, 36, 64, 0.6) 0%, transparent 70%);
-    }
-
-    .cta-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .cta-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 4vw, 4rem);
-      font-weight: 500;
-      line-height: 1.1;
-      color: var(--parchment);
-      margin-bottom: 1.25rem;
-    }
-
-    .cta-title em {
-      font-style: italic;
-      color: var(--gilt-light);
-    }
-
-    .cta-body {
-      font-size: 1.1rem;
-      color: var(--muted);
-      margin-bottom: 2.5rem;
-      line-height: 1.8;
-    }
-
-    .cta-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .contact-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      margin-top: 3rem;
-    }
-
-    .contact-label {
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .contact-val {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      color: var(--parchment);
-    }
-
-    .contact-row {
-      display: flex;
-      gap: 4rem;
-      justify-content: center;
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: #07090d;
-      padding: 2.5rem 4rem;
-      border-top: 0.5px solid rgba(201, 168, 76, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-logo-row {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .footer-mono {
-      width: 28px;
-      height: 28px;
-      border: 0.5px solid rgba(201, 168, 76, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .footer-mono span {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 11px;
-      color: var(--gilt);
-    }
-
-    .footer-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .footer-copy {
-      font-size: 10px;
-      color: rgba(194, 189, 178, 0.55);
-      letter-spacing: 0.06em;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(194, 189, 178, 0.55);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: var(--gilt);
-    }
-
-    /* ─── DIVIDER ─── */
-    .gilt-divider {
-      width: 100%;
-      height: 0.5px;
-      background: linear-gradient(90deg, transparent, var(--gilt), transparent);
-      opacity: 0.3;
-    }
-
-    /* ─── ANIMATIONS ─── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 900px) {
-      nav {
-        padding: 1.25rem 24px !important;
-      }
-
-      .nav-logo {
-        gap: 12px;
-      }
-
-      .nav-wordmark {
-        font-size: 16px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      section,
-      #contact {
-        padding: 5rem 1.5rem;
-      }
-
-      .hero {
-        padding: 7rem 1.5rem 12rem;
-      }
-
-      .hero-stats {
-        right: 1.5rem;
-        bottom: 2rem;
-        gap: 2rem;
-      }
-
-      .about-grid,
-      .sellers-layout,
-      .buyers-layout {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .network-grid,
-      .deal-cards,
-      .two-col-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .network-geography {
-        flex-direction: column;
-        gap: 2rem;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 1.25rem;
-        padding: 2rem 1.5rem;
-      }
-
-      .contact-row {
-        flex-direction: column;
-        gap: 2rem;
-      }
-
-      .field-row {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -1099,12 +25,11 @@
       <div class="nav-wordmark">Blackmont <span style="font-weight:200; opacity:0.6;">Advisory</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#who-we-are">Who We Are</a></li>
-      <li><a href="#what-we-do">What We Do</a></li>
-      <li><a href="#how-we-work">How We Work</a></li>
-      <li><a href="#who-we-work-with">Who We Work With</a></li>
-      <li><a href="#network">Global Access</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#who-we-are">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#our-buyers">Buyers</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Enquire</a>
   </nav>
@@ -1113,477 +38,56 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">Boutique M&A Advisory · Australia</div>
+      <div class="hero-eyebrow">Private M&A Transactions</div>
       <h1 class="hero-title">
-        Advising business owners<br>
-        on <em>$10M–$30M exits</em><br>
-        with direct access to<br>
-        international buyers.
+        We sell mid-market businesses to qualified buyers worldwide.
       </h1>
       <p class="hero-body">
-        Australia-based opportunities. Global capital. Relationship-led execution.
+        Discreet. Direct. Done right.
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Confidential Discussion</a>
-        <a href="#what-we-do" class="btn-ghost">Discuss a Potential Sale</a>
+        <a href="#contact" class="btn-primary">Start a Conversation</a>
       </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">$10M</div>
-        <div class="stat-label">Minimum deal size</div>
+
+    <div class="hero-stats-bar">
+      <div class="hero-stat">
+        <div class="hero-stat-value">$10M–$50M</div>
+        <div class="hero-stat-label">DEAL SIZE</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">$30M</div>
-        <div class="stat-label">Maximum deal size</div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">Private</div>
+        <div class="hero-stat-label">OFF-MARKET TRANSACTIONS</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">AU</div>
-        <div class="stat-label">+ Global buyers</div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">Global</div>
+        <div class="hero-stat-label">BUYER NETWORK</div>
       </div>
     </div>
+
   </section>
 
-  <div class="gilt-divider"></div>
-
-  <!-- WHO WE ARE -->
-  <section id="who-we-are" style="background: var(--navy);">
-    <div class="about-grid">
-      <div>
-        <div class="section-rule"></div>
-        <div class="section-eyebrow">Who We Are</div>
-        <h2 class="section-title">Boutique. Senior-led. Relationship-driven.</h2>
-        <p class="section-body">
-          A boutique M&A firm helping Australian business owners achieve well-run, properly negotiated exits. We work
-          with a small number of clients at any time.
-        </p>
-        <div class="about-pillars">
-          <div class="pillar fade-up">
-            <div class="pillar-title">Personally managed</div>
-            <div class="pillar-body">Each engagement is led personally by the principal, supported by a dedicated team.
-            </div>
-          </div>
-          <div class="pillar fade-up">
-            <div class="pillar-title">Selective by design</div>
-            <div class="pillar-body">We take on a limited number of mandates. Every client gets our full attention.
-            </div>
-          </div>
-          <div class="pillar fade-up">
-            <div class="pillar-title">Relationship first</div>
-            <div class="pillar-body">Our buyer relationships are direct and ongoing. We know who is acquiring and what
-              they want.</div>
-          </div>
-        </div>
-      </div>
-      <div class="about-right">
-        <div class="about-card fade-up">
-          <div class="about-card-num">01</div>
-          <div class="about-card-title">Built for this range</div>
-          <div class="about-card-body">Too large for generalist brokers. Too small for large firms. We built Blackmont
-            specifically for this segment.</div>
-        </div>
-        <div class="about-card fade-up">
-          <div class="about-card-num">02</div>
-          <div class="about-card-title">Sell-side primary</div>
-          <div class="about-card-body">Advising business owners through a sale is our core work. Quietly, deliberately,
-            and with the right people at the table.</div>
-        </div>
-        <div class="about-card fade-up">
-          <div class="about-card-num">03</div>
-          <div class="about-card-title">International reach</div>
-          <div class="about-card-body">We maintain direct relationships with international investors, who are actively
-            seeking Australian businesses.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gilt-divider"></div>
-
-  <!-- OUR EDGE -->
-  <section id="our-edge" style="background: var(--navy-mid); position: relative; overflow: hidden;">
-    <div class="network-bg"></div>
-    <div class="network-inner">
-      <div class="network-header fade-up">
-        <div class="section-rule"></div>
-        <div class="section-eyebrow">Our Edge</div>
-        <h2 class="section-title">Direct access where it matters.</h2>
-        <p class="section-body">
-          Our value is in the buyer relationships we've built over time and the discipline we apply to every process.
-        </p>
-      </div>
-      <div class="network-grid">
-        <div class="network-card fade-up">
-          <div class="network-card-icon">I.</div>
-          <div class="network-card-title">Active buyer mandates</div>
-          <div class="network-card-body">
-            We work with buyers who have live, funded acquisition mandates. When we approach a buyer on behalf of a
-            seller, it's because we already know they're looking and we've already had the conversation.
-          </div>
-        </div>
-        <div class="network-card fade-up">
-          <div class="network-card-icon">II.</div>
-          <div class="network-card-title">International relationships</div>
-          <div class="network-card-body">
-            Our international network, anchored in the UAE with reach across broader global investor pools, gives
-            sellers access to capital that most local advisors never engage.
-          </div>
-        </div>
-        <div class="network-card fade-up">
-          <div class="network-card-icon">III.</div>
-          <div class="network-card-title">Controlled execution</div>
-          <div class="network-card-body">
-            Targeted outreach, staged information release, qualified parties only. No public exposure, no unnecessary
-            noise.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gilt-divider"></div>
-
-  <!-- WHAT WE DO -->
-  <section id="what-we-do" style="background: var(--navy);">
-    <div class="about-grid">
-      <div>
-        <div class="section-rule"></div>
-        <div class="section-eyebrow">What We Do</div>
-        <h2 class="section-title">Sell-side advisory. Select buy-side mandates.</h2>
-        <p class="section-body">
-          Sell-side advisory is our primary focus. We also represent a small number of buyers with active acquisition
-          mandates.
-        </p>
-        <div class="about-pillars" style="margin-top: 2.5rem;">
-          <div class="pillar fade-up">
-            <div class="pillar-title">Positioning the business</div>
-            <div class="pillar-body">We assess the business honestly and present it compellingly, financials, narrative,
-              and deal structure, before a single buyer is approached.</div>
-          </div>
-          <div class="pillar fade-up">
-            <div class="pillar-title">Managing the process</div>
-            <div class="pillar-body">We control the flow of information, manage buyer interactions, and keep the process
-              moving. Vendors focus on running their business while we run the deal.</div>
-          </div>
-          <div class="pillar fade-up">
-            <div class="pillar-title">Negotiating outcomes</div>
-            <div class="pillar-body">Price matters. So does structure, timing, and what happens at and after settlement.
-              We negotiate all of it.</div>
-          </div>
-        </div>
-      </div>
-      <div class="about-right">
-        <div class="about-card fade-up">
-          <div class="about-card-num"
-            style="font-size: 1.1rem; font-family: 'Jost', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 300; color: var(--gilt);">
-            Sell-Side</div>
-          <div class="about-card-title">Core service</div>
-          <div class="about-card-body">
-            From initial positioning through to settlement. Private by default — your business never goes on a listing
-            platform.
-          </div>
-        </div>
-        <div class="about-card fade-up">
-          <div class="about-card-num"
-            style="font-size: 1.1rem; font-family: 'Jost', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 300; color: var(--gilt);">
-            Buy-Side</div>
-          <div class="about-card-title">Select mandates</div>
-          <div class="about-card-body">
-            Capital-ready family offices, private investors, and strategic acquirers with defined mandates. We match
-            them to relevant opportunities as they arise.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gilt-divider"></div>
-
-  <!-- HOW WE WORK -->
-  <section id="how-we-work">
-    <div class="sellers-layout">
-      <div>
-        <div class="section-rule"></div>
-        <div class="section-eyebrow">How We Work</div>
-        <h2 class="section-title">A controlled process from first conversation to close.</h2>
-        <p class="section-body">
-          Every deal we run follows the same deliberate approach.
-        </p>
-        <div class="process-steps" style="margin-top: 2.5rem;">
-          <div class="step fade-up">
-            <div class="step-num">01</div>
-            <div class="step-content">
-              <div class="step-title">Positioning the opportunity</div>
-              <div class="step-body">A thorough assessment of the business, its value drivers, and the right buyer
-                profile.</div>
-            </div>
-          </div>
-          <div class="step fade-up">
-            <div class="step-num">02</div>
-            <div class="step-content">
-              <div class="step-title">Preparing buyer-ready materials</div>
-              <div class="step-body">Clear, accurate documentation structured for serious buyers, not to generate noise.
-              </div>
-            </div>
-          </div>
-          <div class="step fade-up">
-            <div class="step-num">03</div>
-            <div class="step-content">
-              <div class="step-title">Direct outreach to aligned buyers</div>
-              <div class="step-body">Direct, private outreach to aligned buyers. NDAs executed before any information is
-                shared.</div>
-            </div>
-          </div>
-          <div class="step fade-up">
-            <div class="step-num">04</div>
-            <div class="step-content">
-              <div class="step-title">Managing discussions</div>
-              <div class="step-body">We manage all buyer interactions and keep the process moving. Vendors stay focused
-                on their business.</div>
-            </div>
-          </div>
-          <div class="step fade-up">
-            <div class="step-num">05</div>
-            <div class="step-content">
-              <div class="step-title">Negotiation and completion</div>
-              <div class="step-body">Price, structure, and terms — negotiated alongside your legal and accounting
-                advisors through to close.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="sellers-right">
-        <div class="section-eyebrow" style="margin-bottom: 1.25rem;">What this looks like in practice</div>
-        <div class="capability-list">
-          <div class="capability fade-up">
-            <div class="cap-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-            </div>
-            <div>
-              <div class="cap-title">No public listings, ever</div>
-              <div class="cap-body">Every buyer is approached directly and under confidentiality. No listing platforms.
-              </div>
-            </div>
-          </div>
-          <div class="capability fade-up">
-            <div class="cap-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-            </div>
-            <div>
-              <div class="cap-title">Qualified buyers only</div>
-              <div class="cap-body">Buyers are vetted on financial capability and fit before receiving any information.
-              </div>
-            </div>
-          </div>
-          <div class="capability fade-up">
-            <div class="cap-icon">
-              <svg viewBox="0 0 24 24">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-              </svg>
-            </div>
-            <div>
-              <div class="cap-title">Structure matters as much as price</div>
-              <div class="cap-body">Cash, earnouts, vendor finance, equity arrangements — we find what works for both
-                parties.</div>
-            </div>
-          </div>
-          <div class="capability fade-up">
-            <div class="cap-icon">
-              <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-            </div>
-            <div>
-              <div class="cap-title">Faster than you might expect</div>
-              <div class="cap-body">Direct relationships and a controlled process mean deals move without unnecessary
-                delay.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gilt-divider"></div>
-
-  <!-- WHO WE WORK WITH -->
-  <section id="who-we-work-with" style="background: var(--navy);">
-    <div>
-      <div class="section-rule"></div>
-      <div class="section-eyebrow">Who We Work With</div>
-      <h2 class="section-title">Established businesses. Capital-ready buyers.</h2>
-      <p class="section-body" style="margin-bottom: 3.5rem; font-size:1.05rem;">
-        We work with a specific type of client on both sides of a transaction. If you fit the profile below, we'd
-        welcome a direct conversation.
-      </p>
-    </div>
-
-    <div class="two-col-grid" style="margin-bottom: 4rem;">
-      <div class="network-card fade-up" style="background: var(--midnight);">
-        <div class="network-card-icon"
-          style="font-size: 1.05rem; letter-spacing: 0.2em; font-family: 'Jost', sans-serif; font-weight: 300; text-transform: uppercase; color: var(--gilt); opacity: 0.7; margin-bottom: 1.25rem;">
-          Sellers</div>
-        <div class="network-card-title">Business owners considering an exit</div>
-        <div class="network-card-body">
-          Founders and owners of established, profitable businesses between $10M and $30M in enterprise value,
-          considering a full or partial exit. Early-stage conversations are welcome.
-        </div>
-      </div>
-      <div class="network-card fade-up" style="background: var(--midnight);">
-        <div class="network-card-icon"
-          style="font-size: 1.05rem; letter-spacing: 0.2em; font-family: 'Jost', sans-serif; font-weight: 300; text-transform: uppercase; color: var(--gilt); opacity: 0.7; margin-bottom: 1.25rem;">
-          Buyers</div>
-        <div class="network-card-title">Capital-ready and actively acquiring</div>
-        <div class="network-card-body">
-          Family offices, private investors, and strategic acquirers with funded, defined mandates. Registered buyers
-          access opportunities before they are formally brought to market.
-        </div>
-      </div>
-    </div>
-
-    <div class="network-grid">
-      <div class="network-card fade-up" style="background: var(--midnight);">
-        <div class="network-card-icon">I.</div>
-        <div class="network-card-title">Family Offices</div>
-        <div class="network-card-body">
-          Long-horizon investors who prefer direct ownership. They move quietly, transact with deliberation, and
-          represent a significant part of our active buyer network.
-        </div>
-      </div>
-      <div class="network-card fade-up" style="background: var(--midnight);">
-        <div class="network-card-icon">II.</div>
-        <div class="network-card-title">Private Investors</div>
-        <div class="network-card-body">
-          High-net-worth individuals and syndicates who move quickly, accept flexible structures, and engage where
-          others hesitate.
-        </div>
-      </div>
-      <div class="network-card fade-up" style="background: var(--midnight);">
-        <div class="network-card-icon">III.</div>
-        <div class="network-card-title">Strategic Acquirers</div>
-        <div class="network-card-body">
-          Businesses acquiring for capability, geography, or market position — with the resources and discipline to
-          close.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="gilt-divider"></div>
-  <!-- GLOBAL ACCESS -->
-  <section id="network">
-    <div class="network-bg"></div>
-    <div class="network-inner">
-      <div class="network-header fade-up">
-        <div class="section-rule"></div>
-        <div class="section-eyebrow">Global Access</div>
-        <h2 class="section-title">Buyers engaged before businesses come to market.</h2>
-        <p class="section-body">
-          In many cases, buyers are engaged before a business is formally brought to market. That is what direct,
-          ongoing relationships look like in practice.
-        </p>
-      </div>
-      <div class="network-grid" style="margin-bottom: 4rem;">
-        <div class="network-card fade-up">
-          <div class="network-card-icon" style="font-size: 2rem; color: var(--gilt);">UAE</div>
-          <div class="network-card-title">UAE buyer presence</div>
-          <div class="network-card-body">
-            Direct relationships with UAE-based investors actively seeking Australian businesses. Working relationships,
-            not platform referrals.
-          </div>
-        </div>
-        <div class="network-card fade-up">
-          <div class="network-card-icon" style="font-size: 2rem; color: var(--gilt);">AU</div>
-          <div class="network-card-title">Domestic network</div>
-          <div class="network-card-body">
-            Australian family offices, private investors, and strategic buyers who are actively acquiring. Many return
-            to us first when a new mandate is live.
-          </div>
-        </div>
-        <div class="network-card fade-up">
-          <div class="network-card-icon" style="font-size: 2rem; color: var(--gilt);">+</div>
-          <div class="network-card-title">Broader global reach</div>
-          <div class="network-card-body">
-            Beyond the UAE, we engage investors across multiple international markets seeking quality Australian
-            businesses.
-          </div>
-        </div>
-      </div>
-      <div class="network-geography fade-up">
-        <div>
-          <div class="geo-label">Sectors of interest</div>
-          <div class="geo-markets">
-            <span class="geo-tag">Manufacturing</span>
-            <span class="geo-tag">Distribution</span>
-            <span class="geo-tag">Business Services</span>
-            <span class="geo-tag">Healthcare</span>
-            <span class="geo-tag">Industrials</span>
-            <span class="geo-tag">Construction Services</span>
-            <span class="geo-tag">Professional Services</span>
-            <span class="geo-tag">Technology</span>
-          </div>
-        </div>
-        <div class="geo-body">
-          Most active across manufacturing, services, healthcare, industrials, and distribution. If your sector differs,
-          a conversation is still worthwhile.
-        </div>
-      </div>
-    </div>
-  </section>
   <div class="gilt-divider"></div>
 
   <!-- ABOUT -->
-  <section id="about">
-    <div class="about-grid">
-      <div>
-        <div class="section-rule"></div>
-        <div class="section-eyebrow">About Blackmont</div>
-        <h2 class="section-title">Built out of frustration with how deals were being handled.</h2>
-        <p class="section-body">
-          The $10M–$30M segment has always been an awkward fit. Too large for generalist brokers. Too small for large
-          advisory firms to give it real attention.
-        </p>
-        <p class="section-body"
-          style="margin-top: 1.25rem; font-size: 1.05rem; color: var(--muted); line-height: 1.85;">
-          The result is a junior advisor, a listing, and a process that drifts. Blackmont was built as the alternative.
-        </p>
-        <p class="section-body"
-          style="margin-top: 1.25rem; font-size: 1.05rem; color: var(--muted); line-height: 1.85;">
+  <section id="who-we-are" style="background: var(--navy);">
+    <div style="max-width: 100%;">
+      <div class="section-rule"></div>
+      <div class="section-eyebrow">About</div>
+      <h2 class="section-title">Mid-market business sales, handled personally.</h2>
 
-        </p>
-      </div>
-      <div class="about-right">
+      <div class="about-text-grid" style="margin-top: 1.5rem; gap: 2rem;">
         <div class="about-card fade-up">
-          <div class="about-card-num">—</div>
-          <div class="about-card-title">Our philosophy</div>
           <div class="about-card-body">
-            Know your buyers before you need them. Run a disciplined process. Tell clients what they need to hear. We'd
-            rather decline a mandate than run one that won't close.
+            Blackmont Advisory sells established, privately held businesses in the $10M–$50M range. We work directly
+            with owners who want a serious, confidential process.
           </div>
         </div>
         <div class="about-card fade-up">
-          <div class="about-card-num">—</div>
-          <div class="about-card-title">Discretion as a default</div>
           <div class="about-card-body">
-            Every engagement is confidential from the first conversation. We don't discuss clients or publicise
-            mandates.
-          </div>
-        </div>
-        <div class="about-card fade-up">
-          <div class="about-card-num">—</div>
-          <div class="about-card-title">A small firm by choice</div>
-          <div class="about-card-body">
-            We could take on more clients. The quality of our work depends on not doing so.
+            Every engagement is managed personally. We connect sellers with pre-qualified buyers, including
+            international acquirers, through direct relationships.
           </div>
         </div>
       </div>
@@ -1592,50 +96,271 @@
 
   <div class="gilt-divider"></div>
 
-  <!-- FINAL CTA -->
-  <section id="contact">
-    <div class="cta-bg"></div>
-    <div class="cta-inner">
-      <div class="section-rule" style="margin: 0 auto 1rem;"></div>
-      <div class="section-eyebrow" style="text-align: center; margin-bottom: 1.5rem;">Begin a Confidential Conversation
+  <!-- SERVICES -->
+  <section id="services" style="background: var(--navy-mid); position: relative; overflow: hidden;">
+    <div class="network-bg"></div>
+    <div class="network-inner">
+      <div class="network-header fade-up">
+        <div class="section-rule"></div>
+        <div class="section-eyebrow">Services</div>
+        <h2 class="section-title">What we do.</h2>
       </div>
-      <h2 class="cta-title">
-        Every significant transaction begins with a <br><em>private conversation.</em>
-      </h2>
+      <div class="network-grid">
+        <div class="network-card fade-up">
+          <div class="network-card-icon"
+            style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0.5px solid rgba(201, 168, 76, 0.3); margin-bottom: 1.5rem; padding: 10px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" style="width: 100%; height: 100%;">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div class="network-card-title">Sell-Side Advisory</div>
+          <div class="network-card-body">
+            We represent business owners through a controlled, private sale process.
+          </div>
+        </div>
+        <div class="network-card fade-up">
+          <div class="network-card-icon"
+            style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0.5px solid rgba(201, 168, 76, 0.3); margin-bottom: 1.5rem; padding: 10px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" style="width: 100%; height: 100%;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+              </path>
+            </svg>
+          </div>
+          <div class="network-card-title">International Buyer Access</div>
+          <div class="network-card-body">
+            Direct relationships with qualified buyers across Australia, the UAE, and key global markets.
+          </div>
+        </div>
+        <div class="network-card fade-up">
+          <div class="network-card-icon"
+            style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0.5px solid rgba(201, 168, 76, 0.3); margin-bottom: 1.5rem; padding: 10px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" style="width: 100%; height: 100%;">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="network-card-title">Buy-Side Mandates</div>
+          <div class="network-card-body">
+            We represent select acquirers with active mandates, sourcing off-market opportunities that match their
+            criteria.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div class="cta-actions">
-        <a href="mailto:info@blackmontadvisory.com" class="btn-primary">Confidential Discussion</a>
-        <a href="mailto:info@blackmontadvisory.com" class="btn-ghost">Speak Directly</a>
+  <div class="gilt-divider"></div>
+
+  <!-- OUR BUYERS -->
+  <section id="our-buyers" style="background: var(--navy);">
+    <div style="max-width: 100%;">
+      <div class="section-rule"></div>
+      <div class="section-eyebrow">Our Buyers</div>
+      <h2 class="section-title">Pre-qualified. Capital-ready. Global.</h2>
+      <p class="section-body" style="margin-bottom: 3.5rem; max-width: 100%;">
+        We maintain direct relationships with serious acquirers. When we bring a business to
+        market, buyers are already engaged.
+      </p>
+
+      <div class="buyers-pillars-grid">
+        <div class="pillar fade-up">
+          <div class="pillar-body" style="color: var(--muted);">Family offices and private investors</div>
+        </div>
+        <div class="pillar fade-up">
+          <div class="pillar-body" style="color: var(--muted);">Strategic acquirers expanding into new markets</div>
+        </div>
+        <div class="pillar fade-up">
+          <div class="pillar-body" style="color: var(--muted);">International buyers, including active UAE & Singapore
+            capital</div>
+        </div>
+        <div class="pillar fade-up">
+          <div class="pillar-body" style="color: var(--muted);">Groups with defined acquisition mandates</div>
+        </div>
       </div>
-      <div class="contact-row">
-        <div class="contact-item">
-          <span class="contact-label">Email</span>
-          <span class="contact-val">info@blackmontadvisory.com
-          </span>
+    </div>
+  </section>
+
+  <div class="gilt-divider"></div>
+
+  <!-- PROCESS -->
+  <section id="process" style="padding-top: 14rem; padding-bottom: 5rem;">
+    <div class="process-bg"></div>
+    <div style="position: relative; z-index: 1;">
+      <div class="section-eyebrow">Process</div>
+      <h2 class="section-title" style="margin-bottom: 0;">Simple. Controlled. Confidential.</h2>
+    </div>
+  </section>
+
+  <div class="gilt-divider"></div>
+
+  <!-- PROCESS STEPS -->
+  <section id="process-steps" style="background: var(--navy);">
+    <div style="max-width: 960px; margin: 0 auto;">
+      <div class="process-list">
+        <div class="process-row fade-up">
+          <div class="process-num">01</div>
+          <div class="process-title">Position</div>
+          <div class="process-desc">We work with you to define how the business is presented to the right buyers.</div>
         </div>
-        <div class="contact-item">
-          <span class="contact-label">Based in</span>
-          <span class="contact-val">Australia</span>
+        <div class="process-row fade-up">
+          <div class="process-num">02</div>
+          <div class="process-title">Prepare</div>
+          <div class="process-desc">We prepare investment-grade information memorandums, institutional-quality
+            materials
+            built for serious acquirers.</div>
         </div>
-        <div class="contact-item">
-          <span class="contact-label">Transaction range</span>
-          <span class="contact-val">$10M — $30M</span>
+        <div class="process-row fade-up">
+          <div class="process-num">03</div>
+          <div class="process-title">Protect</div>
+          <div class="process-desc">Your business stays confidential throughout the entire process. Information is only
+            shared with pre-qualified, NDA-bound buyers.</div>
         </div>
+        <div class="process-row fade-up">
+          <div class="process-num">04</div>
+          <div class="process-title">Connect</div>
+          <div class="process-desc">Targeted outreach to pre-qualified buyers through our direct network.</div>
+        </div>
+        <div class="process-row fade-up">
+          <div class="process-num">05</div>
+          <div class="process-title">Negotiate</div>
+          <div class="process-desc">We manage discussions, control the process, and drive the deal to completion.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gilt-divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-layout">
+      <!-- Left Info Column -->
+      <div class="fade-up">
+        <div class="section-eyebrow">Contact</div>
+        <h2 class="contact-title">Let's talk.</h2>
+        <p class="contact-body">
+          Whether you're considering a sale now or planning for the future,
+          Blackmont Advisory can support you at every stage of the process.
+        </p>
+
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-info-label">Email</div>
+              <div class="contact-info-val">info@blackmontadvisory.com</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-info-label">Phone</div>
+              <div class="contact-info-val">+61 2 0000 0000</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-info-label">Location</div>
+              <div class="contact-info-val">Australia · UAE · Singapore</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Form Column -->
+      <div class="fade-up">
+        <form action="https://formsubmit.co/info@blackmontadvisory.com" method="POST" class="contact-form">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="name" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Business / Company</label>
+            <input type="text" name="business" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone (optional)</label>
+            <input type="tel" name="phone" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">How can we help?</label>
+            <textarea name="message" class="form-input" required></textarea>
+          </div>
+
+          <input type="hidden" name="_captcha" value="false">
+          <button type="submit" class="btn-submit">
+            Send Message &rarr;
+          </button>
+        </form>
       </div>
     </div>
   </section>
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo-row">
-      <div class="footer-mono"><span>BA</span></div>
-      <span class="footer-name">Blackmont Advisory</span>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="nav-logo">
+          <div class="nav-mono"><span>BA</span></div>
+          <div class="nav-wordmark">Blackmont <span style="font-weight:200; opacity:0.6;">Advisory</span></div>
+        </a>
+        <p>Mid-market business sales. Direct access to qualified buyers worldwide.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <div class="footer-links">
+          <a href="#who-we-are">About</a>
+          <a href="#services">Services</a>
+          <a href="#our-buyers">Buyers</a>
+          <a href="#process">Process</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-links">
+          <div class="footer-contact-item">info@blackmontadvisory.com</div>
+          <div class="footer-contact-item">+61 433 525 731</div>
+          <div class="footer-contact-item">Australia · UAE · Singapore</div>
+        </div>
+      </div>
     </div>
-    <span class="footer-copy">© 2026 Blackmont Advisory. All rights reserved.</span>
-    <div class="footer-links">
-      <a href="#who-we-are">Who We Are</a>
-      <a href="#what-we-do">What We Do</a>
-      <a href="#network">Global Access</a>
-      <a href="#contact">Contact</a>
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <span class="footer-sep">|</span>
+        <a href="terms.html">Terms & Conditions</a>
+      </div>
+      <span class="footer-copyright">© 2026 Blackmont Advisory. All rights reserved.</span>
     </div>
   </footer>
 
